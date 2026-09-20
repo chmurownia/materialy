@@ -1,6 +1,46 @@
 # materialy
-
+    
 ## Projekt 1: Infrastruktura i CI/CD (Tygodnie 1-5)
+### Architektura
+
+```mermaid
+flowchart TD
+    %% Definicje stylów
+    classDef user fill:#f0fdf4,stroke:#4ade80,stroke-width:1px;
+    classDef git fill:#f8fafc,stroke:#94a3b8,stroke-width:1px;
+    classDef aws fill:#fffbeb,stroke:#fbbf24,stroke-width:1px;
+    
+    %% Aktorzy zewnętrzni
+    Dev("💻 Para Uczniów\n(Twórcy)"):::user
+    Klient("🌍 Odwiedzający\n(Przeglądarka internetowa)"):::user
+
+    %% Narzędzia GitHub
+    subgraph Grupa_GitHub ["Ekosystem GitHub"]
+        Repo("🐙 Repozytorium\n(Pliki Markdown)"):::git
+        GHA("⚙️ GitHub Actions\n(Wirtualna maszyna CI/CD)"):::git
+    end
+
+    %% Usługi AWS
+    subgraph Grupa_AWS ["Chmura AWS"]
+        IAM("🔐 AWS IAM\n(Zarządzanie Tożsamością i OIDC)"):::aws
+        S3("🪣 Amazon S3\n(Prywatny magazyn obiektowy)"):::aws
+        CF("⚡ Amazon CloudFront\n(Globalna sieć CDN)"):::aws
+        R53("🌐 Amazon Route 53\n(Szkolna subdomena)"):::aws
+    end
+
+    %% Ścieżka Wdrażania (CI/CD)
+    Dev -- "1. Git Push" --> Repo
+    Repo -- "2. Trigger (Merge do main)" --> GHA
+    GHA -- "3. Logowanie bez użycia hasła" --> IAM
+    GHA -- "4. Konwersja do HTML i zapis\n(aws s3 sync)" --> S3
+
+    %% Ścieżka Odwiedzającego (Ruch WWW)
+    Klient -- "5. Wpisanie adresu WWW" --> R53
+    R53 -- "6. Przekierowanie ruchu" --> CF
+    CF -- "7. Pobranie strony z ukrytego bucketa\n(Uprawnienie OAC)" --> S3
+    CF -. "8. Zaserwowanie strony z Cache" .-> Klient
+```
+
 ### Lekcja 1: Inicjalizacja i organizacja pracy (GitHub)
 
 - Wstęp (5 min): Przedstawienie architektury docelowej na tablicy (Użytkownik -> CloudFront -> S3 <- GitHub Actions <- Kod) i podział na pary.
