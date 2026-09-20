@@ -1,7 +1,7 @@
 # materialy
     
 ## Projekt 1: Infrastruktura i CI/CD (Tygodnie 1-5)
-### Architektura
+### Diagram architektury dla strony www i CI/CD
 
 ```mermaid
 flowchart TD
@@ -72,6 +72,37 @@ flowchart TD
 - Zakończenie (5 min): Zrozumienie, że na ten moment mamy tylko puste "pudełko" na dane.
 
 ## Projekt 2: Serverless i API Economy (Tygodnie 6-10)
+### Diagram architektury dla Księgi Gości 
+
+```mermaid
+flowchart TD
+    %% Definicje stylów
+    classDef browser fill:#f0fdf4,stroke:#4ade80,stroke-width:1px;
+    classDef aws fill:#fffbeb,stroke:#fbbf24,stroke-width:1px;
+    classDef external fill:#f8fafc,stroke:#94a3b8,stroke-width:1px,stroke-dasharray: 5 5;
+    
+    %% Klienci / Źródła ruchu
+    User("👤 Użytkownik przeglądający stronę\n(Przeglądarka internetowa)"):::browser
+    OtherTeam("🚀 Inny Zespół w klasie\n(Zapytanie cURL / Postman)"):::external
+
+    %% Infrastruktura Serverless (Backend)
+    subgraph Grupa_Backend ["AWS Serverless Backend"]
+        API("🚪 Amazon API Gateway\n(Endpoint publiczny HTTP API)"):::aws
+        Lambda("⚡ AWS Lambda\n(Logika w Pythonie - boto3)"):::aws
+        Dynamo("🗄️ Amazon DynamoDB\n(Baza NoSQL / Tabela)"):::aws
+        IAM("🔐 AWS IAM\n(Uprawnienie dynamodb:PutItem)"):::aws
+    end
+
+    %% Komunikacja i przepływ danych
+    User -- "1. Formularz JS wysyła JSON\n(Metoda POST / GET)" --> API
+    OtherTeam -- "Atak przyjazny: bezpośrednie użycie API\n(Wysyłka JSON przez POST)" --> API
+    
+    API -- "2. Przekazanie żądania i danych" --> Lambda
+    Lambda -. "3. Autoryzacja działania" .-> IAM
+    Lambda -- "4. Operacja zapisu lub odczytu" --> Dynamo
+
+```
+
 ### Lekcja 6: Logika aplikacji (AWS Lambda)
 
 - Wstęp (5 min): Koncepcja Serverless – płacimy tylko za milisekundy wykonania kodu.
