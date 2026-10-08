@@ -15,7 +15,7 @@ Działa to dokładnie tak samo, jak prąd w gniazdku (model **Pay-as-you-go**). 
 ## Słowniczek pojęć (do zapamiętania przed zajęciami)
 
 * **Chmura publiczna:** Usługi IT dostarczane przez zewnętrznego dostawcę przez Internet, z których każdy może skorzystać i wynająć fragment dla siebie.
-* **AWS Region:** Fizyczna, bezpieczna lokalizacja na świecie (np. Frankfurt, Irlandia, Londyn), składająca się z ogromnych budynków pełnych serwerów (Data Center). My w naszym projekcie będziemy pracować głównie w regionie we Frankfurcie (oznaczonym w systemie jako `eu-central-1`).
+* **AWS Region:** Fizyczna, bezpieczna lokalizacja na świecie (np. Sztokholm, Frankfurt, Irlandia), składająca się z ogromnych budynków pełnych serwerów (Data Center). My w naszym projekcie będziemy pracować w regionie w Sztokholmie (oznaczonym w systemie jako `eu-north-1`).
 * **Zasada najmniejszych uprawnień (Least Privilege):** Złota reguła bezpieczeństwa w chmurze. W AWS żaden program, usługa ani użytkownik nie ma prawa zrobić absolutnie niczego, dopóki wyraźnie mu na to nie zezwolimy (nie napiszemy odpowiedniej polityki uprawnień).
 * **Serverless (Architektura bezserwerowa):** Najnowocześniejsze podejście do chmury. Nie wynajmujemy tu całych serwerów, którymi trzeba zarządzać, aktualizować na nich system czy dbać o dyski. Zlecamy chmurze tylko konkretne zadanie (np. przechowanie pliku lub wykonanie 10 linijek kodu). AWS dba o to, by system działał i nie zawiesił się, niezależnie od tego, czy stronę odwiedzi 10 osób, czy milion.
 

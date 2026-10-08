@@ -21,7 +21,8 @@ Kod wykonał swoje zadanie, ale gdzieś musi trwale zapisać wiadomość. Zamias
 ## Słowniczek pojęć (do zapamiętania przed zajęciami)
 
 * **API (Application Programming Interface):** Interfejs, przez który systemy komputerowe rozmawiają ze sobą, bez udziału człowieka.
-* **Endpoint:** Dokładny adres internetowy (URL), wystawiony przez API Gateway, na który należy wysłać dane, aby wyzwolić konkretną akcję (np. `[https://wasze-api.amazonaws.com/KsiegaGosci](https://wasze-api.amazonaws.com/KsiegaGosci)`).
+* **Endpoint:** Dokładny adres internetowy (URL), wystawiony przez API Gateway, na który należy wysłać dane, aby wyzwolić konkretną akcję. W naszym projekcie użyjemy HTTP API z jedną ścieżką `/entries`, np. `https://wasze-api.execute-api.eu-north-1.amazonaws.com/entries`.
+* **Trasa (Route) i metody:** Pod adresem `/entries` obsłużymy dwie metody HTTP: `GET /entries` (pobranie listy wszystkich wpisów) oraz `POST /entries` (dodanie nowego wpisu). Nowy wpis wysyłamy jako JSON w formacie `{"author": "...", "message": "..."}`, a w odpowiedzi na `GET` otrzymujemy listę wpisów z polami `author`, `message` i `timestamp`.
 * **JSON (JavaScript Object Notation):** Lekki format tekstowy do przesyłania danych. Systemy używają go do wymiany informacji, ponieważ jest zrozumiały zarówno dla przeglądarek, Pythona (w Lambdzie), jak i baz danych (DynamoDB). Wygląda jak lista właściwości ujęta w klamry, np.: `{"author": "Janek", "message": "Hej!"}`.
 * **CORS (Cross-Origin Resource Sharing):** Zabezpieczenie wbudowane w przeglądarki internetowe. Domyślnie blokuje ono stronie WWW możliwość wysyłania zapytań do API znajdującego się pod innym adresem niż sama strona. Będziemy musieli je poprawnie skonfigurować w API Gateway, inaczej formularz nie zadziała.
 

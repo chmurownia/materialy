@@ -32,3 +32,38 @@ Wdrożymy to zgodnie z dzisiejszym standardem bezpieczeństwa: użyjemy mechaniz
 Na kolejnej lekcji utworzycie w swoim repozytorium folder `.github/workflows/`, a w nim plik YAML, który dostarczę. Będziecie musieli edytować w nim tylko dwie linijki: podać numer (ARN) specjalnej roli IAM z Waszego konta AWS oraz dokładną nazwę Waszego bucketu S3.
 
 Po zatwierdzeniu tych zmian, GitHub Actions przy każdym nowym commicie zainstaluje program MkDocs, wygeneruje z Waszych plików Markdown kod HTML, użyje OIDC do autoryzacji w koncie AWS i automatycznie zsynchronizuje pliki na buckecie S3. W ten sposób zbudujecie i uruchomicie swój pierwszy w pełni funkcjonalny Pipeline CI/CD.
+
+## Ważne: nowy format identyfikatora repozytorium (immutable subject claims)
+
+Rola IAM w AWS ufa GitHubowi na podstawie tzw. `sub` (subject) — identyfikatora, który GitHub wysyła w tokenie OIDC. Repozytoria utworzone po **15 lipca 2026** używają nowego, „niezmiennego" formatu, który zawiera **numeryczne ID organizacji i repozytorium**:
+
+```
+repo:<organizacja>@<ID_ORG>/<repozytorium>@<ID_REPO>:environment:<środowisko>
+```
+
+Przykład (prawdziwe demo):
+
+```
+repo:chmurownia@331737546/demo@1391044409:environment:demo
+```
+
+Jeśli w polityce zaufania roli użyjecie starego formatu (`repo:organizacja/repo:*`), autoryzacja **nie zadziała** — zobaczycie błąd:
+
+```
+Not authorized to perform sts:AssumeRoleWithWebIdentity
+```
+
+### Jak znaleźć swoje numeryczne ID
+
+Najprościej odczytać cały `sub` bezpośrednio z GitHuba. Wejdźcie w repozytorium:
+**Settings → Actions → General** (sekcja dot. OIDC) — GitHub pokazuje tam dokładny identyfikator `sub`, który wysyła. Skopiujcie go i wklejcie do polityki zaufania roli IAM (pole `token.actions.githubusercontent.com:sub`).
+
+Alternatywnie ID repozytorium można pobrać z API:
+
+```bash
+gh api repos/CHMUROWNIA/NAZWA_REPO --jq '{owner_id: .owner.id, repo_id: .id}'
+```
+
+### Dlaczego używamy `environment`
+
+W workflow ustawiamy `environment: <nazwa>` (np. `demo`). Dzięki temu token GitHuba zawiera `:environment:<nazwa>` w `sub`, a my możemy ograniczyć zaufanie roli tylko do wdrożeń z tego konkretnego środowiska — to bezpieczniejsze niż zaufanie całemu repozytorium.
