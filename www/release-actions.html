@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4. Publikacja strony po nowym Release</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a class="logo" href="index.html">🐙 GitHub dla uczniów</a>
+      <ul>
+        <li><a href="konto.html">1. Konto</a></li>
+        <li><a href="student-pack.html">2. Student Pack</a></li>
+        <li><a href="github-pages.html">3. Pages</a></li>
+        <li><a href="release-actions.html" class="active">4. Release</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <p class="muted">Krok 4 z 4</p>
+      <h1 class="page-title">Publikacja strony po nowym Release (GitHub Actions)</h1>
+      <p class="lead">Zamiast publikować po każdym commicie, strona zaktualizuje się dopiero po utworzeniu nowego wydania (Release).</p>
+      <ol class="guide">
+        <li>W <em>Settings → Pages → Build and deployment → Source</em> wybierz <strong>GitHub Actions</strong>.</li>
+        <li>W repozytorium utwórz plik <code>.github/workflows/pages.yml</code> (<em>Add file → Create new file</em>, wpisz całą ścieżkę z ukośnikami) z poniższą treścią:
+<pre><code><span class="k">name</span>: Publikacja po Release
+
+<span class="k">on</span>:
+  <span class="k">release</span>:
+    <span class="k">types</span>: [published]   <span class="c"># uruchom po opublikowaniu Release</span>
+  <span class="k">workflow_dispatch</span>:          <span class="c"># opcjonalnie: ręczne uruchomienie</span>
+
+<span class="k">permissions</span>:
+  <span class="k">contents</span>: read
+  <span class="k">pages</span>: write
+  <span class="k">id-token</span>: write
+
+<span class="k">concurrency</span>:
+  <span class="k">group</span>: pages
+  <span class="k">cancel-in-progress</span>: true
+
+<span class="k">jobs</span>:
+  <span class="k">deploy</span>:
+    <span class="k">runs-on</span>: <span class="s">ubuntu-latest</span>
+    <span class="k">environment</span>:
+      <span class="k">name</span>: github-pages
+      <span class="k">url</span>: ${{ steps.deployment.outputs.page_url }}
+    <span class="k">steps</span>:
+      - <span class="k">uses</span>: <span class="s">actions/checkout@v4</span>
+      - <span class="k">uses</span>: <span class="s">actions/configure-pages@v5</span>
+      - <span class="k">uses</span>: <span class="s">actions/upload-pages-artifact@v3</span>
+        <span class="k">with</span>:
+          <span class="k">path</span>: .          <span class="c"># folder ze stroną (np. www)</span>
+      - <span class="k">id</span>: deployment
+        <span class="k">uses</span>: <span class="s">actions/deploy-pages@v4</span></code></pre>
+        </li>
+        <li>Zatwierdź plik (<strong>Commit changes</strong>). Od teraz zwykłe commity <em>nie</em> zmieniają strony.</li>
+        <li>Opublikuj wydanie: <em>Releases → Create a new release</em>, w polu <em>Choose a tag</em> wpisz np. <code>v1.0.0</code> i wybierz <em>Create new tag</em>, dodaj tytuł, a następnie kliknij <strong>Publish release</strong>.</li>
+        <li>W zakładce <strong>Actions</strong> zobaczysz uruchomiony workflow. Gdy będzie zielony ✅, strona jest zaktualizowana.</li>
+        <li>Przy kolejnych zmianach: zrób commit, a gdy będziesz gotowy do publikacji – utwórz nowy Release (<code>v1.0.1</code>, <code>v1.1.0</code>…).</li>
+      </ol>
+      <div class="note">⚠️ Jeśli workflow zgłasza błąd o ochronie środowiska <code>github-pages</code>, w <em>Settings → Environments → github-pages</em> dopuść wdrażanie z tagów (lub usuń ograniczenie do brancha <code>main</code>).</div>
+      <div class="pager">
+        <a class="btn" href="github-pages.html">← GitHub Pages</a>
+        <a class="btn primary" href="index.html">Na stronę główną</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">Materiały lekcyjne · <a href="https://github.com/chmurownia/materialy">chmurownia/materialy</a></div>
+  </footer>
+</body>
+</html>
