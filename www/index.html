@@ -14,8 +14,10 @@
       <ul>
         <li><a href="#mozliwosci">Możliwości</a></li>
         <li><a href="#workflow">Jak to działa</a></li>
-        <li><a href="#actions">Actions</a></li>
-        <li><a href="#start">Start</a></li>
+        <li><a href="konto.html">1. Konto</a></li>
+        <li><a href="student-pack.html">2. Student Pack</a></li>
+        <li><a href="github-pages.html">3. Pages</a></li>
+        <li><a href="release-actions.html">4. Release</a></li>
       </ul>
     </div>
   </nav>
@@ -25,7 +27,8 @@
       <div class="octo">🐙</div>
       <h1>Twórzmy razem. W chmurze.</h1>
       <p>GitHub to miejsce, w którym miliony ludzi piszą kod, pracują w zespołach i publikują swoje projekty. Sprawdź, co potrafi!</p>
-      <a class="btn primary" href="#mozliwosci">Poznaj możliwości</a>
+      <a class="btn primary" href="konto.html">Zacznij od konta</a>
+      <a class="btn" href="#mozliwosci">Poznaj możliwości</a>
       <a class="btn" href="https://github.com/chmurownia/materialy">Repozytorium lekcji</a>
     </div>
   </header>
@@ -63,32 +66,15 @@
 
   <section id="actions">
     <div class="container">
-      <h2>Automatyzacja w kilku liniach</h2>
-      <p class="lead">GitHub Actions opisujesz prostym plikiem YAML. Poniżej – publikacja strony po każdej zmianie.</p>
-<pre><code><span class="k">name</span>: Deploy
-<span class="k">on</span>:
-  <span class="k">push</span>:
-    <span class="k">branches</span>: [<span class="s">main</span>]   <span class="c"># uruchom po każdym pushu</span>
-<span class="k">jobs</span>:
-  <span class="k">deploy</span>:
-    <span class="k">runs-on</span>: <span class="s">ubuntu-latest</span>
-    <span class="k">steps</span>:
-      - <span class="k">uses</span>: <span class="s">actions/checkout@v4</span>
-      - <span class="k">run</span>: <span class="s">echo "Publikujemy stronę!"</span></code></pre>
-    </div>
-  </section>
-
-  <section id="start" class="alt">
-    <div class="container">
-      <h2>Zacznij już dziś</h2>
-      <p class="lead">Wystarczy darmowe konto, aby stworzyć pierwszy projekt.</p>
+      <h2>Instrukcje krok po kroku</h2>
+      <p class="lead">Cztery kroki od założenia konta do automatycznej publikacji własnej strony.</p>
       <div class="grid">
-        <div class="card"><div class="icon">1️⃣</div><h3>Załóż konto</h3><p>Zarejestruj się na github.com.</p></div>
-        <div class="card"><div class="icon">2️⃣</div><h3>Utwórz repozytorium</h3><p>Kliknij „New” i dodaj plik README.</p></div>
-        <div class="card"><div class="icon">3️⃣</div><h3>Włącz Pages</h3><p>Settings → Pages → wybierz źródło i opublikuj stronę.</p></div>
+        <a class="card link-card" href="konto.html"><div class="icon">1️⃣</div><h3>Załóż konto na GitHub</h3><p>Rejestracja, weryfikacja i zabezpieczenie konta.</p></a>
+        <a class="card link-card" href="student-pack.html"><div class="icon">2️⃣</div><h3>Student Developer Pack</h3><p>Jak go włączyć i co daje.</p></a>
+        <a class="card link-card" href="github-pages.html"><div class="icon">3️⃣</div><h3>Własna strona w GitHub Pages</h3><p>Repozytorium, index.html i publikacja.</p></a>
+        <a class="card link-card" href="release-actions.html"><div class="icon">4️⃣</div><h3>Publikacja po Release</h3><p>GitHub Actions uruchamiane nowym wydaniem.</p></a>
       </div>
       <p style="text-align:center;margin-top:2rem">
-        <a class="btn primary" href="https://github.com/signup">Załóż konto</a>
         <a class="btn" href="https://docs.github.com/pl">Dokumentacja</a>
         <a class="btn" href="https://skills.github.com">GitHub Skills</a>
       </p>

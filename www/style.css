@@ -109,3 +109,16 @@ footer {
   border-top: 1px solid var(--border);
 }
 @media (max-width: 640px) { nav ul { display: none; } }
+
+.page-title { font-size: 2.2rem; margin: .2rem 0 .5rem; }
+.guide { padding-left: 1.4rem; max-width: 820px; }
+.guide li { margin-bottom: .9rem; }
+.guide pre { margin-top: .6rem; overflow-x: auto; }
+.note { max-width: 820px; background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--accent2); border-radius: 8px; padding: .8rem 1rem; margin-top: 1rem; }
+.muted { color: var(--muted); font-size: .9rem; }
+:not(pre) > code { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: .05rem .35rem; }
+nav ul { flex-wrap: wrap; }
+nav ul a.active { color: var(--text); font-weight: 600; }
+.pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+a.link-card { display: block; color: inherit; }
+a.link-card:hover { border-color: var(--accent2); }
