@@ -1,31 +1,31 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages # nazwa workflow widoczna w zakładce Actions
 
-on:
-  push:
-    branches: [main]
-    paths: ["www/**", ".github/workflows/pages.yml"]
-  workflow_dispatch:
+on: # kiedy workflow ma się uruchamiać
+  push: # po wypchnięciu zmian do repozytorium
+    branches: [main] # tylko dla gałęzi main
+    paths: ["www/**", ".github/workflows/pages.yml"] # tylko gdy zmieniły się pliki w www/ lub ten workflow
+  workflow_dispatch: # pozwala uruchomić workflow ręcznie z poziomu GitHuba
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+permissions: # uprawnienia tokenu GITHUB_TOKEN
+  contents: read # odczyt kodu repozytorium
+  pages: write # zapis (publikacja) na GitHub Pages
+  id-token: write # token OIDC potwierdzający autentyczność wdrożenia
 
-concurrency:
-  group: pages
-  cancel-in-progress: true
+concurrency: # kontrola równoległych uruchomień
+  group: pages # uruchomienia z tej samej grupy nie biegną jednocześnie
+  cancel-in-progress: true # nowe uruchomienie anuluje trwające
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: www
-      - id: deployment
-        uses: actions/deploy-pages@v4
+jobs: # lista zadań workflow
+  deploy: # nazwa jedynego zadania
+    runs-on: ubuntu-latest # maszyna wirtualna z Ubuntu
+    environment: # środowisko wdrożeniowe wymagane przez Pages
+      name: github-pages # nazwa środowiska
+      url: ${{ steps.deployment.outputs.page_url }} # adres strony pobrany z wyniku kroku "deployment"
+    steps: # kolejne kroki zadania
+      - uses: actions/checkout@v7 # pobiera kod repozytorium na maszynę
+      - uses: actions/configure-pages@v6 # przygotowuje konfigurację GitHub Pages
+      - uses: actions/upload-pages-artifact@v5 # pakuje pliki do artefaktu dla Pages
+        with: # parametry tej akcji
+          path: www # katalog, którego zawartość zostanie opublikowana
+      - id: deployment # identyfikator kroku, do którego odwołuje się url wyżej
+        uses: actions/deploy-pages@v5 # publikuje artefakt na GitHub Pages
