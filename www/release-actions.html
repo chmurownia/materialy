@@ -29,10 +29,10 @@
         <li>W repozytorium utwórz plik <code>.github/workflows/pages.yml</code> (<em>Add file → Create new file</em>, wpisz całą ścieżkę z ukośnikami) z poniższą treścią:
 <pre><code><span class="k">name</span>: Publikacja po Release
 
-<span class="k">on</span>:
+<span class="k">on</span>:                     <span class="c"># kiedy workflow ma się uruchamiać</span>
   <span class="k">release</span>:
     <span class="k">types</span>: [published]   <span class="c"># uruchom po opublikowaniu Release</span>
-  <span class="k">workflow_dispatch</span>:          <span class="c"># opcjonalnie: ręczne uruchomienie</span>
+  <span class="k">workflow_dispatch</span>:     <span class="c"># opcjonalnie: ręczne uruchomienie</span>
 
 <span class="k">permissions</span>:
   <span class="k">contents</span>: read
@@ -43,20 +43,20 @@
   <span class="k">group</span>: pages
   <span class="k">cancel-in-progress</span>: true
 
-<span class="k">jobs</span>:
-  <span class="k">deploy</span>:
-    <span class="k">runs-on</span>: <span class="s">ubuntu-latest</span>
-    <span class="k">environment</span>:
+<span class="k">jobs</span>:                        <span class="c"># lista zadań workflow</span>
+  <span class="k">deploy</span>:                    <span class="c"># nazwa jedynego zadania</span>
+    <span class="k">runs-on</span>: <span class="s">ubuntu-latest</span>   <span class="c"># maszyna wirtualna z Ubuntu</span>
+    <span class="k">environment</span>:             <span class="c"># środowisko wdrożeniowe wymagane przez Pages</span>
       <span class="k">name</span>: github-pages
       <span class="k">url</span>: ${{ steps.deployment.outputs.page_url }}
     <span class="k">steps</span>:
-      - <span class="k">uses</span>: <span class="s">actions/checkout@v4</span>
-      - <span class="k">uses</span>: <span class="s">actions/configure-pages@v5</span>
-      - <span class="k">uses</span>: <span class="s">actions/upload-pages-artifact@v3</span>
+      - <span class="k">uses</span>: <span class="s">actions/checkout@v7</span>   <span class="c"># pobiera kod repozytorium na maszynę</span>
+      - <span class="k">uses</span>: <span class="s">actions/configure-pages@v6</span>    <span class="c"># przygotowuje konfigurację GitHub Pages</span>
+      - <span class="k">uses</span>: <span class="s">actions/upload-pages-artifact@v5</span>  <span class="c"># pakuje pliki do artefaktu dla Pages</span>
         <span class="k">with</span>:
-          <span class="k">path</span>: .          <span class="c"># folder ze stroną (np. www)</span>
+          <span class="k">path</span>: .            <span class="c"># folder ze stroną (np. www)</span>
       - <span class="k">id</span>: deployment
-        <span class="k">uses</span>: <span class="s">actions/deploy-pages@v4</span></code></pre>
+        <span class="k">uses</span>: <span class="s">actions/deploy-pages@v5</span>  <span class="c"># publikuje artefakt na GH Pages</span></code></pre>
         </li>
         <li>Zatwierdź plik (<strong>Commit changes</strong>). Od teraz zwykłe commity <em>nie</em> zmieniają strony.</li>
         <li>Opublikuj wydanie: <em>Releases → Create a new release</em>, w polu <em>Choose a tag</em> wpisz np. <code>v1.0.0</code> i wybierz <em>Create new tag</em>, dodaj tytuł, a następnie kliknij <strong>Publish release</strong>.</li>
