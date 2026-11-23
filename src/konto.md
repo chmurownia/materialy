@@ -1,6 +1,6 @@
 # 1. Jak założyć konto na GitHub
 
-*Krok 1 z 5.* Konto jest darmowe i zajmuje kilka minut.
+*Krok 1 z 6.* Konto jest darmowe i zajmuje kilka minut.
 
 1. Wejdź na [github.com/signup](https://github.com/signup).
 2. Podaj adres e-mail (najlepiej taki, do którego masz stały dostęp – np. szkolny, przyda się do Student Developer Pack).

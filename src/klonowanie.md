@@ -1,6 +1,6 @@
-# 5. Jak sklonować repozytorium (gh CLI lub git)
+# 6. Jak sklonować repozytorium (gh CLI lub git)
 
-*Krok 5 z 5.* Pobierz kopię repozytorium na komputer – bez zapisywania tokenów w plikach.
+*Krok 6 z 6.* Pobierz kopię repozytorium na komputer – bez zapisywania tokenów w plikach.
 
 !!! warning "Komputer szkolny"
 

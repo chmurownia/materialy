@@ -1,6 +1,6 @@
-# 4. Publikacja strony po nowym Release (GitHub Actions)
+# 5. Publikacja strony po nowym Release (GitHub Actions)
 
-*Krok 4 z 5.* Zamiast publikować po każdym commicie, strona zaktualizuje się dopiero po utworzeniu nowego wydania (Release).
+*Krok 5 z 6.* Zamiast publikować po każdym commicie, strona zaktualizuje się dopiero po utworzeniu nowego wydania (Release).
 
 1. W *Settings → Pages → Build and deployment → Source* wybierz **GitHub Actions**.
 2. W repozytorium utwórz plik `.github/workflows/pages.yml` (*Add file → Create new file*, wpisz całą ścieżkę z ukośnikami) z poniższą treścią:
@@ -47,5 +47,5 @@
 
     Jeśli workflow zgłasza błąd o ochronie środowiska `github-pages`, w *Settings → Environments → github-pages* dopuść wdrażanie z tagów (lub usuń ograniczenie do brancha `main`).
 
-[← GitHub Pages](github-pages.md){ .md-button }
+[← Publikacja po pushu](push-actions.md){ .md-button }
 [Dalej: klonowanie repozytorium →](klonowanie.md){ .md-button .md-button--primary }

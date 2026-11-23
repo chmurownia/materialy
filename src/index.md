@@ -82,7 +82,7 @@ Typowy cykl pracy, który stosują zawodowi programiści.
 
 ## Instrukcje krok po kroku
 
-Pięć kroków od założenia konta do automatycznej publikacji własnej strony i pracy z kodem lokalnie.
+Sześć kroków od założenia konta do automatycznej publikacji własnej strony i pracy z kodem lokalnie.
 
 <div class="grid cards" markdown>
 
@@ -110,7 +110,15 @@ Pięć kroków od założenia konta do automatycznej publikacji własnej strony 
 
     [:octicons-arrow-right-24: Przejdź](github-pages.md)
 
--   **4. Publikacja po Release**
+-   **4. Publikacja po każdym pushu**
+
+    ---
+
+    GitHub Actions uruchamiane po każdej zmianie na `main`.
+
+    [:octicons-arrow-right-24: Przejdź](push-actions.md)
+
+-   **5. Publikacja po Release**
 
     ---
 
@@ -118,7 +126,7 @@ Pięć kroków od założenia konta do automatycznej publikacji własnej strony 
 
     [:octicons-arrow-right-24: Przejdź](release-actions.md)
 
--   **5. Klonowanie repozytorium**
+-   **6. Klonowanie repozytorium**
 
     ---
 

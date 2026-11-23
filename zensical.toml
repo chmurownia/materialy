@@ -12,8 +12,9 @@ nav = [
   { "1. Konto" = "konto.md" },
   { "2. Student Pack" = "student-pack.md" },
   { "3. Pages" = "github-pages.md" },
-  { "4. Release" = "release-actions.md" },
-  { "5. Klonowanie" = "klonowanie.md" },
+  { "4. Push" = "push-actions.md" },
+  { "5. Release" = "release-actions.md" },
+  { "6. Klonowanie" = "klonowanie.md" },
 ]
 
 [project.theme]

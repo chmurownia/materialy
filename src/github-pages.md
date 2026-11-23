@@ -1,6 +1,6 @@
 # 3. Jak stworzyć własną stronę w GitHub Pages
 
-*Krok 3 z 5.* Darmowy hosting strony prosto z repozytorium.
+*Krok 3 z 6.* Darmowy hosting strony prosto z repozytorium.
 
 1. Kliknij **+ → New repository**. Jako nazwę wpisz `twoja-nazwa.github.io` (gdzie `twoja-nazwa` to Twój login) albo dowolną nazwę dla strony projektu. Ustaw repozytorium jako **Public**.
 2. Dodaj plik `index.html`: *Add file → Create new file* i wklej:
@@ -22,4 +22,4 @@
 6. Każda kolejna zmiana w `index.html` (commit na `main`) automatycznie odświeża stronę.
 
 [← Student Pack](student-pack.md){ .md-button }
-[Dalej: publikacja po Release →](release-actions.md){ .md-button .md-button--primary }
+[Dalej: publikacja po każdym pushu →](push-actions.md){ .md-button .md-button--primary }

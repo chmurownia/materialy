@@ -1,6 +1,6 @@
 # 2. GitHub Student Developer Pack
 
-*Krok 2 z 5.* Darmowy pakiet narzędzi dla uczniów i studentów.
+*Krok 2 z 6.* Darmowy pakiet narzędzi dla uczniów i studentów.
 
 ## Jak go włączyć
 
