@@ -3,7 +3,7 @@ name: Deploy GitHub Pages # nazwa workflow widoczna w zakładce Actions
 on: # kiedy workflow ma się uruchamiać
   push: # po wypchnięciu zmian do repozytorium
     branches: [main] # tylko dla gałęzi main
-    paths: ["www/**", ".github/workflows/pages.yml"] # tylko gdy zmieniły się pliki w www/ lub ten workflow
+    paths: ["src/**", "zensical.toml", "requirements.txt", ".github/workflows/pages.yml"] # tylko gdy zmieniły się treść strony, konfiguracja lub ten workflow
   workflow_dispatch: # pozwala uruchomić workflow ręcznie z poziomu GitHuba
 
 permissions: # uprawnienia tokenu GITHUB_TOKEN
@@ -24,8 +24,13 @@ jobs: # lista zadań workflow
     steps: # kolejne kroki zadania
       - uses: actions/checkout@v7 # pobiera kod repozytorium na maszynę
       - uses: actions/configure-pages@v6 # przygotowuje konfigurację GitHub Pages
+      - uses: actions/setup-python@v6 # instaluje Pythona potrzebnego do Zensical
+        with: # parametry tej akcji
+          python-version: 3.x # najnowsza dostępna wersja Pythona 3
+      - run: pip install -r requirements.txt # instaluje Zensical
+      - run: zensical build --clean # buduje stronę z plików Markdown w src/ do katalogu site/
       - uses: actions/upload-pages-artifact@v5 # pakuje pliki do artefaktu dla Pages
         with: # parametry tej akcji
-          path: www # katalog, którego zawartość zostanie opublikowana
+          path: site # katalog, którego zawartość zostanie opublikowana
       - id: deployment # identyfikator kroku, do którego odwołuje się url wyżej
         uses: actions/deploy-pages@v5 # publikuje artefakt na GitHub Pages

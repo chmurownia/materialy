@@ -1,0 +1,57 @@
+[project]
+site_name = "GitHub dla uczniów"
+site_description = "Prosty przewodnik po możliwościach platformy GitHub dla uczniów liceum."
+site_url = "https://chmurownia.github.io/materialy/"
+copyright = "Materiały lekcyjne · chmurownia/materialy"
+docs_dir = "src"
+site_dir = "site"
+repo_url = "https://github.com/chmurownia/materialy"
+repo_name = "chmurownia/materialy"
+nav = [
+  { "Start" = "index.md" },
+  { "1. Konto" = "konto.md" },
+  { "2. Student Pack" = "student-pack.md" },
+  { "3. Pages" = "github-pages.md" },
+  { "4. Release" = "release-actions.md" },
+  { "5. Klonowanie" = "klonowanie.md" },
+]
+
+[project.theme]
+language = "pl"
+favicon = "assets/favicon.svg"
+logo = "assets/favicon.svg"
+features = [
+  "content.code.copy",
+  "content.tabs.link",
+  "navigation.footer",
+  "navigation.instant",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Przełącz na tryb ciemny"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Przełącz na tryb jasny"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
