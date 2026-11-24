@@ -3,9 +3,9 @@
 *Krok 4 z 6.* Strona aktualizuje się automatycznie po każdej zmianie wypchniętej do gałęzi `main`.
 
 1. W *Settings → Pages → Build and deployment → Source* wybierz **GitHub Actions**.
-2. W repozytorium utwórz plik `.github/workflows/pages.yml` (*Add file → Create new file*, wpisz całą ścieżkę z ukośnikami) z poniższą treścią:
+2. W repozytorium utwórz plik `.github/workflows/static.yml` (*Add file → Create new file*, wpisz całą ścieżkę z ukośnikami) z poniższą treścią:
 
-    ```yaml title=".github/workflows/pages.yml"
+    ```yaml title=".github/workflows/static.yml"
     name: Publikacja po pushu
 
     on:                     # kiedy workflow ma się uruchamiać
@@ -20,7 +20,7 @@
 
     concurrency:
       group: pages
-      cancel-in-progress: true
+      cancel-in-progress: false
 
     jobs:                        # lista zadań workflow
       deploy:                    # nazwa jedynego zadania

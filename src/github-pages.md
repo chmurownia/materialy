@@ -2,7 +2,7 @@
 
 *Krok 3 z 6.* Darmowy hosting strony prosto z repozytorium.
 
-1. Kliknij **+ → New repository**. Jako nazwę wpisz `twoja-nazwa.github.io` (gdzie `twoja-nazwa` to Twój login) albo dowolną nazwę dla strony projektu. Ustaw repozytorium jako **Public**.
+1. Kliknij **+ → New repository**. Jako nazwę wpisz `twoja-nazwa.github.io` (gdzie `twoja-nazwa` to Twój login) albo dowolną nazwę dla strony projektu. Ustaw repozytorium jako **Public**. Zaznacz też opcję **Add a README file**. Dzięki temu repozytorium zostanie zainicjowane (powstanie gałąź `main`) i od razu będzie można dodawać pliki przez interfejs webowy. Potem kliknij **Create repository**.
 2. Dodaj plik `index.html`: *Add file → Create new file* i wklej:
 
     ```html

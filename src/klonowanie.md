@@ -13,6 +13,10 @@
 3. Uprawnienia: *Contents: Read and write* (do `git push`) – do samego klonowania publicznego repo token nie jest potrzebny.
 4. Skopiuj token – zobaczysz go tylko raz. Nie wklejaj go do notatnika ani plików.
 
+![Konfiguracja fine-grained PAT na GitHubie: właściciel zasobów, czas ważności 7 dni, dostęp do repozytoriów i uprawnienie Contents: Read and write](GitHub-PAT-konfiguracja.png)
+
+*Przykładowa konfiguracja tokenu. Na zrzucie zaznaczono „All repositories”, ale dla większego bezpieczeństwa wybierz „Only select repositories” i wskaż tylko to repozytorium, z którym pracujesz.*
+
 ## Krok 2. Ustaw token w zmiennej środowiskowej
 
 Zmienna istnieje tylko w bieżącym oknie terminala i znika po jego zamknięciu.
@@ -29,10 +33,10 @@ Zmienna istnieje tylko w bieżącym oknie terminala i znika po jego zamknięciu.
     set GH_TOKEN=wklej_token
     ```
 
-=== "Linux / macOS (Bash)"
+=== "Linux / macOS (Bash i Zsh)"
 
     ```bash
-    read -rs -p "Wklej token: " GH_TOKEN; export GH_TOKEN; echo
+    printf "Wklej token: "; read -rs GH_TOKEN; export GH_TOKEN; echo
     ```
 
 !!! tip "Wskazówka"
@@ -52,8 +56,8 @@ Zmienna istnieje tylko w bieżącym oknie terminala i znika po jego zamknięciu.
 4. Sklonuj repozytorium:
 
     ```bash
-    gh repo clone chmurownia/materialy
-    cd materialy
+    gh repo clone chmurownia/<twoje_repozytorium>
+    cd <twoje_repozytorium>
     ```
 
 ## Opcja B. Klonowanie przez git (HTTPS)
@@ -61,8 +65,8 @@ Zmienna istnieje tylko w bieżącym oknie terminala i znika po jego zamknięciu.
 Publiczne repozytorium sklonujesz bez tokenu:
 
 ```bash
-git clone https://github.com/chmurownia/materialy.git
-cd materialy
+git clone https://github.com/chmurownia/<twoje_repozytorium>.git
+cd <twoje_repozytorium>
 ```
 
 Do `git push` lub repozytoriów prywatnych przekaż token jednorazowo przez zmienną, bez zapisywania go w adresie `remote`:
@@ -127,7 +131,7 @@ git config user.email "twoj-login@users.noreply.github.com"
     gh auth setup-git
     ```
 
-    Wybierz *GitHub.com → HTTPS → Login with a web browser* – nie musisz tworzyć tokenu ręcznie. Token trafi do menedżera poświadczeń systemu (Windows Credential Manager, macOS Keychain, Linux secret service). Alternatywnie użyj kluczy SSH: `git clone git@github.com:chmurownia/materialy.git`. Nadal nie commituj tokenów do repozytorium ani nie wpisuj ich na stałe w plikach takich jak `.bashrc` czy `.env` śledzonych przez git.
+    Wybierz *GitHub.com → HTTPS → Login with a web browser* – nie musisz tworzyć tokenu ręcznie. Token trafi do menedżera poświadczeń systemu (Windows Credential Manager, macOS Keychain, Linux secret service). Alternatywnie użyj kluczy SSH: `git clone git@github.com:chmurownia/<twoje_repozytorium>.git`. Nadal nie commituj tokenów do repozytorium ani nie wpisuj ich na stałe w plikach takich jak `.bashrc` czy `.env` śledzonych przez git.
 
 [← Publikacja po Release](release-actions.md){ .md-button }
 [Na stronę główną](index.md){ .md-button .md-button--primary }
